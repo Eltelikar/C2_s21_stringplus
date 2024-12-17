@@ -207,7 +207,9 @@ void s21_handle_padding(char **cur, const char *value, int len,
 
 void s21_handle_char(char **cur, char value, FormatSpec spec) {
   char temp[2] = {value, '\0'};
-  s21_handle_padding(cur, temp, 1, spec);
+  if (*cur) {
+    s21_handle_padding(cur, temp, 1, spec);
+  }
 }
 
 void s21_handle_string(char **cur, char *value, FormatSpec spec) {
@@ -221,7 +223,9 @@ void s21_handle_string(char **cur, char *value, FormatSpec spec) {
     len = spec.precision;
   }
 
-  s21_handle_padding(cur, value, len, spec);
+  if (*cur) {
+    s21_handle_padding(cur, value, len, spec);
+  }
 }
 
 void s21_int_to_str(long long value, char *str, int precision) {

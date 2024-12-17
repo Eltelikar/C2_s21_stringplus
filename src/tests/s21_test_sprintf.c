@@ -146,8 +146,8 @@ START_TEST(test_s21_sprintf_unsigned_edge) {
 END_TEST
 
 START_TEST(test_s21_sprintf_multiple_specifiers) {
-  char s21_buffer[200];
-  char std_buffer[200];
+  char s21_buffer[512];
+  char std_buffer[512];
 
   // Смешанные спецификаторы
   s21_sprintf(s21_buffer, "%d %c %.2f %s", 42, 'A', 3.1415, "Hello");
