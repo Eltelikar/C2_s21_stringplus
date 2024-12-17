@@ -329,19 +329,16 @@ START_TEST(test_s21_sprintf_precision) {
 END_TEST
 
 START_TEST(test_s21_sprintf_empty_string_with_width) {
-    char s21_buffer[100];
-    char std_buffer[100];
+  char s21_buffer[100];
+  char std_buffer[100];
 
-    int s21_res = s21_sprintf(s21_buffer, "|%-10s|", "");
-    int std_res = sprintf(std_buffer, "|%-10s|", "");
+  int s21_res = s21_sprintf(s21_buffer, "|%-10s|", "");
+  int std_res = sprintf(std_buffer, "|%-10s|", "");
 
-    ck_assert_int_eq(s21_res, std_res);
-    ck_assert_str_eq(s21_buffer, std_buffer);
+  ck_assert_int_eq(s21_res, std_res);
+  ck_assert_str_eq(s21_buffer, std_buffer);
 }
 END_TEST
-
-
-
 
 Suite *s21_sprintf_suite(void) {
   Suite *s = suite_create("s21_sprintf");
