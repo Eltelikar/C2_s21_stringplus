@@ -23,7 +23,7 @@ int s21_sprintf(char *str, const char *format, ...) {
 
   *cur = '\0';
   va_end(args);
-  return error;
+  return cur - str;
 }
 
 void s21_parse_handle(char **cur, const char **format, va_list args,

@@ -28,10 +28,10 @@ $(LIB_NAME).a: $(OBJS)
 	rm -rf *.o
 
 test: clean $(LIB_NAME).a
-	$(CC) $(FLAGS) s21_test.c tests/*.c $(LIB_NAME).a $(TST_LIBS) -o test
+	$(CC) $(FLAGS) test.c tests/*.c $(LIB_NAME).a $(TST_LIBS) -o test
 
 sanitize: clean $(LIB_NAME).a
-	$(CC) $(FLAGS) $(SANITIZE) s21_test.c tests/*.c $(LIB_NAME).a $(TST_LIBS) -o SANITIZE
+	$(CC) $(FLAGS) $(SANITIZE) test.c tests/*.c $(LIB_NAME).a $(TST_LIBS) -o SANITIZE
 
 main: $(LIB_NAME).a
 	$(CC) $(FLAGS) main.c -L. $(LIB_NAME).a $(TST_LIBS) -o Main
@@ -41,6 +41,6 @@ add_coverage_flag:
 
 gcov_report: add_coverage_flag test 
 	./test
-	rm -rf check*.gcda check*.gcno
+	rm -rf test*.gcda test*.gcno
 	gcov -b -l -p -c s21_*.gcno
-	gcovr -o gcov_report.html --html --html-details --exclude 's21_test.*|tests/.'
+	gcovr -o gcov_report.html --html --html-details --exclude 'test\.c' --exclude '.*tests/.*'

@@ -328,6 +328,21 @@ START_TEST(test_s21_sprintf_precision) {
 }
 END_TEST
 
+START_TEST(test_s21_sprintf_empty_string_with_width) {
+    char s21_buffer[100];
+    char std_buffer[100];
+
+    int s21_res = s21_sprintf(s21_buffer, "|%-10s|", "");
+    int std_res = sprintf(std_buffer, "|%-10s|", "");
+
+    ck_assert_int_eq(s21_res, std_res);
+    ck_assert_str_eq(s21_buffer, std_buffer);
+}
+END_TEST
+
+
+
+
 Suite *s21_sprintf_suite(void) {
   Suite *s = suite_create("s21_sprintf");
   TCase *tc_core = tcase_create("Core");
@@ -350,6 +365,7 @@ Suite *s21_sprintf_suite(void) {
   tcase_add_test(tc_core, test_s21_sprintf_flags_combinations);
   tcase_add_test(tc_core, test_s21_sprintf_unsigned2);
   tcase_add_test(tc_core, test_s21_sprintf_precision);
+  tcase_add_test(tc_core, test_s21_sprintf_empty_string_with_width);
 
   suite_add_tcase(s, tc_core);
   return s;
