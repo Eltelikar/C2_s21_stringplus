@@ -2,6 +2,7 @@
 #define S21_STRING
 
 #include <stdarg.h>
+#include <stdlib.h>
 
 #include "s21_errorlist.h"
 
@@ -52,5 +53,11 @@ void s21_handle_padding(char **cur, const char *value, int len,
                         FormatSpec spec);
 void s21_parse_handle(char **cur, const char **format, va_list args,
                       FormatSpec spec, int *error);
+
+// s21_part5 func
+void *s21_to_upper(const char *str);
+void *s21_to_lower(const char *str);
+void *s21_insert(const char *src, const char *str, size_t start_index);
+void *s21_trim(const char *src, const char *trim_chars);
 
 #endif

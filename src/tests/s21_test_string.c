@@ -99,7 +99,7 @@ START_TEST(test_s21_strerror) {
   for (int i = 0; i < ERROR_COUNT; i++) {
     ck_assert_str_eq(s21_strerror(i), strerror(i));
   }
-  ck_assert_str_eq(s21_strerror(ERROR_COUNT + 1), "Unknown error");
+  ck_assert_str_eq(s21_strerror(ERROR_COUNT + 1), strerror(ERROR_COUNT + 1));
 }
 END_TEST
 

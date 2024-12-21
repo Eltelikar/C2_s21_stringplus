@@ -178,7 +178,7 @@ where:
 
 ## Part 1. Implementation of the string.h library functions
 
-It is necessary to implement the described [above](#stringh-functions) functions of the string.h library: 
+It is necessary to implement the described [above](#stringh-functions) functions of the string.h library, as well as the s21_size_t type and the S21_NULL macro: 
  - The library must be developed in C language of C11 standard using gcc compiler.
  - The library's code, including headers, makefile and library itself must be located in the src folder on the develop branch.
  - Do not use outdated and legacy language constructions and library functions. Pay attention to the legacy and obsolete marks in the official documentation on the language and the libraries used. Use the POSIX.1-2017 standard.
@@ -226,7 +226,7 @@ Bonus assignment for extra points. You need to implement some format modifiers o
 Bonus assignment for extra points. You need to implement the sscanf function from the stdio.h library:
 - The function must be placed in the s21_string.h library.
 - All of the requirements outlined in [the first part](#part-1-implementation-of-the-stringh-library-functions) are applied to function implementation.
-- Full formatting (including flags, widths, precision, modifiers and conversion types) must be supported.
+- Full formatting (including flags, widths, modifiers and conversion types) must be supported.
 
 
 ## Part 5. Bonus. Implementation of special string processing functions

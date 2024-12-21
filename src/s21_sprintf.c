@@ -1,11 +1,13 @@
 #include "s21_string.h"
 
 int s21_sprintf(char *str, const char *format, ...) {
+  if (str == S21_NULL || format == S21_NULL) {
+    return -1;
+  }
   int error = 0;
   va_list args;
   char *cur = str;
-
-  s21_memset(str, 0, s21_strlen(str) + 1);
+  s21_memset(str, 0, 100);
 
   va_start(args, format);
 
@@ -23,7 +25,11 @@ int s21_sprintf(char *str, const char *format, ...) {
 
   *cur = '\0';
   va_end(args);
-  return cur - str;
+
+  int result = -1;
+  if (error == 0) result = cur - str;
+
+  return result;
 }
 
 void s21_parse_handle(char **cur, const char **format, va_list args,
@@ -64,6 +70,9 @@ void s21_parse_handle(char **cur, const char **format, va_list args,
     }
     case 's': {
       char *value = va_arg(args, char *);
+      if (value == S21_NULL) {
+        value = "(null)";
+      }
       s21_handle_string(cur, value, spec);
       break;
     }

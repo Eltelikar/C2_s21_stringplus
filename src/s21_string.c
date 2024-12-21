@@ -157,10 +157,18 @@ s21_size_t s21_strcspn(const char *str1, const char *str2) {
 }
 
 char *s21_strerror(int errnum) {
-  char *result = "Unknown error";
+  char *result = S21_NULL;
+  static char unkn_err[128] = {'\0'};
   if (errnum >= 0 && errnum < ERROR_COUNT) {
     const char *errors[] = ERRORS;
     result = (char *)errors[errnum];
+  } else {
+#if defined(__linux__)
+    s21_sprintf(unkn_err, "Unknown error %d", errnum);
+#elif defined(__APPLE__)
+    s21_sprintf(unkn_err, "Unknown error: %d", errnum);
+#endif
+    result = unkn_err;
   }
   return result;
 }
